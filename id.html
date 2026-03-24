@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ID Card Generator</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  text-align: center;
+  margin: 0;
+}
+
+/* Form Section */
+.container {
+  background: white;
+  padding: 20px;
+  margin: 30px auto;
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+input {
+  padding: 10px;
+  margin: 8px;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 20px;
+  background: linear-gradient(to right, #ff512f, #dd2476);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* ID Card */
+.card {
+  width: 320px;
+  margin: 30px auto;
+  padding: 20px;
+  background: linear-gradient(to bottom, #ffffff, #e6f0ff);
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  display: none;
+}
+
+.card h2 {
+  color: #004080;
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #004080;
+}
+
+.details {
+  text-align: left;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.details p {
+  margin: 6px 0;
+}
+
+/* Footer */
+.footer {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #555;
+}
+</style>
+</head>
+
+<body>
+
+<h1 style="color:white; margin-top:20px;">
+Ilahia College of Engineering and Technology
+</h1>
+
+<div class="container">
+  <h2>Enter Student Details</h2>
+
+  <input type="text" id="name" placeholder="Name"><br>
+  <input type="text" id="regno" placeholder="Register No"><br>
+  <input type="text" id="course" placeholder="Course"><br>
+  <input type="text" id="dept" placeholder="Department"><br>
+  <input type="email" id="email" placeholder="Email"><br>
+  <input type="file" id="photo"><br>
+
+  <button onclick="generateCard()">Generate ID Card</button>
+</div>
+
+<div class="card" id="idCard">
+  <h2>Ilahia College of Engineering and Technology</h2>
+
+  <img id="cphoto" src="https://via.placeholder.com/100">
+
+  <div class="details">
+    <p><strong>Name:</strong> <span id="cname"></span></p>
+    <p><strong>Reg No:</strong> <span id="cregno"></span></p>
+    <p><strong>Course:</strong> <span id="ccourse"></span></p>
+    <p><strong>Department:</strong> <span id="cdept"></span></p>
+    <p><strong>Email:</strong> <span id="cemail"></span></p>
+  </div>
+
+  <div class="footer">
+    Valid Till: 2026
+  </div>
+</div>
+
+<script>
+function generateCard() {
+  document.getElementById("cname").innerText =
+    document.getElementById("name").value;
+
+  document.getElementById("cregno").innerText =
+    document.getElementById("regno").value;
+
+  document.getElementById("ccourse").innerText =
+    document.getElementById("course").value;
+
+  document.getElementById("cdept").innerText =
+    document.getElementById("dept").value;
+
+  document.getElementById("cemail").innerText =
+    document.getElementById("email").value;
+
+  let file = document.getElementById("photo").files[0];
+  if (file) {
+    let reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById("cphoto").src = e.target.result;
+    }
+    reader.readAsDataURL(file);
+  }
+
+  document.getElementById("idCard").style.display = "block";
+}
+</script>
+
+</body>
+</html>
